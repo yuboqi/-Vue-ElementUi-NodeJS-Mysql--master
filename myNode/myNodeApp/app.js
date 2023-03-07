@@ -31,6 +31,9 @@ const bxtj = require('./routes/bxtj')
 // 配置用户权限页面的路由
 const yhqx = require('./routes/yhqx')
 
+//  管理员登录页面的路由
+const signin = require('./routes/signin')
+
 // error handler
 onerror(app)
 
@@ -66,6 +69,7 @@ app.use(sspf.routes(), sspf.allowedMethods())
 app.use(lgpf.routes(), lgpf.allowedMethods())
 app.use(bxtj.routes(), bxtj.allowedMethods())
 app.use(yhqx.routes(), yhqx.allowedMethods())
+app.use(signin.routes(), signin.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

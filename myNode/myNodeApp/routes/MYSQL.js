@@ -5,7 +5,8 @@ const pool = mysql.createPool({
     host: 'localhost',// 数据库地址
     user: 'root',// 数据库用户
     password: 'root',// 数据库密码
-    database: 'studentdormitory'// 要连接的数据库
+    database: 'magiccreative'// 要连接的数据库
+    // database: 'studentdormitory'// 要连接的数据库
 });
 // connection.connect();
 
