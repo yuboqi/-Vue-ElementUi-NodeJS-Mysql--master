@@ -362,31 +362,6 @@ router.post('/update', async (ctx, next) => {
 	}
 });
 
-// //查看用户名在user表中是否存在
-// router.post('/checkuser', async (ctx, next) => {
-// 	let username = ctx.request.body.username;
-// 	let a = await query(`SELECT * FROM user WHERE uname = '${username}'`);
-// 	console.log(a);
-// 	if (a.length == 0) {
-// 		// 不存在
-// 		let data = {
-// 			code: 200,
-// 			msg: '用户名可用',
-// 			data: a
-// 		};
-// 		ctx.body = data;
-// 		console.log(data)
-// 	} else {
-// 		let data = {
-// 			code: 0,
-// 			msg: '用户名已存在',
-// 			data: a
-// 		};
-// 		ctx.body = data;
-// 		console.log(data)
-// 	}
-// });
-
 
 
 

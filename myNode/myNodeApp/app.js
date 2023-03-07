@@ -34,6 +34,9 @@ const yhqx = require('./routes/yhqx')
 //  管理员登录页面的路由
 const signin = require('./routes/signin')
 
+//  用户注册的路由
+const signup = require('./routes/signup')
+
 // error handler
 onerror(app)
 
@@ -70,6 +73,7 @@ app.use(lgpf.routes(), lgpf.allowedMethods())
 app.use(bxtj.routes(), bxtj.allowedMethods())
 app.use(yhqx.routes(), yhqx.allowedMethods())
 app.use(signin.routes(), signin.allowedMethods())
+app.use(signup.routes(), signup.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
