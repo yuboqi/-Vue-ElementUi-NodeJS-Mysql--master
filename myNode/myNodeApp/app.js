@@ -30,12 +30,20 @@ const lgpf = require('./routes/lgpf')
 const bxtj = require('./routes/bxtj')
 // 配置用户权限页面的路由
 const yhqx = require('./routes/yhqx')
-
 //  管理员登录页面的路由
 const signin = require('./routes/signin')
-
 //  用户注册的路由
 const signup = require('./routes/signup')
+//  用户注册的路由
+const type = require('./routes/type')
+//  个人信息的路由
+const account = require('./routes/account')
+//购买保险的路由
+const buyinsurance = require('./routes/buyinsurance')
+//管理员权限的路由
+const role = require('./routes/role')
+//超管查看所有用户信息
+const userlist = require('./routes/userlist')
 
 // error handler
 onerror(app)
@@ -74,6 +82,11 @@ app.use(bxtj.routes(), bxtj.allowedMethods())
 app.use(yhqx.routes(), yhqx.allowedMethods())
 app.use(signin.routes(), signin.allowedMethods())
 app.use(signup.routes(), signup.allowedMethods())
+app.use(type.routes(), type.allowedMethods())
+app.use(account.routes(), account.allowedMethods())
+app.use(buyinsurance.routes(), buyinsurance.allowedMethods())
+app.use(role.routes(), role.allowedMethods())
+app.use(userlist.routes(), userlist.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

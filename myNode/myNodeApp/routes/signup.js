@@ -1,4 +1,4 @@
-//用户注册
+//用户注册ybq
 
 const router = require('koa-router')()
 //引入MySQL数据库
@@ -11,8 +11,6 @@ router.get('/', function(ctx, next) {
 
 
 // 用户注册接口
-
-
 router.post('/', async (ctx, next) => {
 	// console.log(ctx.request.body);
 	let cust_id = ctx.request.body.cust_id;
@@ -49,7 +47,34 @@ router.post('/', async (ctx, next) => {
 	} else {
 		let data = {
 			code: 400,
-			errorMessage: '更新失败'
+			errorMessage: "注册失败"
+		};
+		ctx.body = data;
+	}
+});
+
+
+//查看用户是否存在
+router.get('/account', async (ctx, next) => {
+	// console.log(ctx.request.body);
+	let cust_account = ctx.request.body.cust_account;
+	//根据用户id值更新数据
+	let a = await query(
+		`SELECT * from customer WHERE cust_account = '${cust_account}'`
+	);
+	console.log(a.length);
+
+	if (a.length == 0) {
+		// 更新成功
+		// 200代表更新成功
+		let data = {
+			code: 200,
+		};
+		ctx.body = data;
+	} else {
+		let data = {
+			code: 400,
+			errorMessage: "用户已存在"
 		};
 		ctx.body = data;
 	}
