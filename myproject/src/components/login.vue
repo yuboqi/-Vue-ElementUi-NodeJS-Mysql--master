@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1>学生宿舍管理系统</h1>
+    <h1>幻创保险公司客户信息管理系统</h1>
     <div class="loginBox">
       <!-- logo区域 -->
       <div class="loginLogo">
@@ -16,7 +16,11 @@
       >
         <!-- 用户名 -->
         <el-form-item prop="name">
-          <el-input v-model="loginForm.name" placeholder="请输入用户名" prefix-icon="el-icon-s-custom"></el-input>
+          <el-input
+            v-model="loginForm.name"
+            placeholder="请输入用户名"
+            prefix-icon="el-icon-s-custom"
+          ></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
@@ -29,7 +33,7 @@
         </el-form-item>
         <!-- 登录注册按钮 -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="login">登录</el-button>
+          <el-button type="primary" @click="rootLogin">登录</el-button>
           <el-button type="info" @click="reset">重置</el-button>
         </el-form-item>
       </el-form>
@@ -38,41 +42,71 @@
 </template>
 
 <script>
+// import { Notify } from 'vant'
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {
       //登录表单数据绑定对象
       loginForm: {
-        name: "",
-        password: ""
+        name: '',
+        password: '',
       },
       // 登录表单数据验证规则对象
       rules: {
         name: [
-          { required: true, message: "请输入登录名称", trigger: "blur" },
-          { min: 3, max: 10, message: "长度在 3 到 10 个字符", trigger: "blur" }
+          { required: true, message: '请输入登录名称', trigger: 'blur' },
+          {
+            min: 3,
+            max: 10,
+            message: '长度在 3 到 10 个字符',
+            trigger: 'blur',
+          },
         ],
         password: [
-          { required: true, message: "请输入合法的密码", trigger: "blur" }
-        ]
-      }
-    };
+          { required: true, message: '请输入合法的密码', trigger: 'blur' },
+        ],
+      },
+    }
   },
   methods: {
     // 点击重置按钮重置表单
     reset() {
-      this.$refs.loginFormRef.resetFields();
+      this.$refs.loginFormRef.resetFields()
     },
     // 点击登录按钮先预校验,校验成功后发起请求,请求成功跳转到首页
-    login() {
+    rootLogin() {
       let _this = this;
-      this.$refs.loginFormRef.validate(valid => {
+      this.$refs.loginFormRef.validate(async (valid) => {
         // 如果校验失败就返回
-        if (!valid) return;
+        if (!valid) return
         // 如果校验成功发起请求
+        // try {
+        //   const result = await this.$API.loginAPI({
+        //     account: this.loginForm.name,
+        //     password: this.loginForm.password,
+        //   })
+        //   if (result.data.code == 200) {
+        //     this.$message({
+        //       showClose: true,
+        //       message: '登录成功',
+        //       type: 'success',
+        //     })
+        //     this.$router.push('/home')
+        //   } else {
+        //     this.$message({
+        //       showClose: true,
+        //       message: '账号或者密码错误',
+        //       type: 'error',
+        //     })
+        //   }
+        //   console.log(result.data)
+        // } catch (error) {
+        //   alert(error.message)
+        //   // Notify({ type: 'danger', message: '用户名或密码错误' })
+        // }
         this.$http
-          .post("http://localhost:3000/login", this.loginForm)
+          .post("http://localhost:3000/login", this.loginForm,)
           .then(function(response) {
             console.log(response.data);
             // 如果状态码为200，代表登录成功，0为失败
@@ -105,10 +139,10 @@ export default {
           .catch(function(error) {
             console.log(error);
           });
-      });
-    }
-  }
-};
+      })
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -121,7 +155,7 @@ body {
 .login {
   width: 100%;
   height: 100%;
-  background: url("../assets/img/10.jpg") center center no-repeat;
+  background: url('../assets/img/10.jpg') center center no-repeat;
   background-size: 100% 100%;
   position: relative;
   overflow: hidden;

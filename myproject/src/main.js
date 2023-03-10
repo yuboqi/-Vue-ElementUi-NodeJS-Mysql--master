@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './plugins/element.js'
+import * as API from './api'
 // 导入字体图标
 import './assets/font/iconfont.css'
 // 导入全局样式表
@@ -24,5 +25,8 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  beforeCreate() {
+    Vue.prototype.$API = API
+  }
 }).$mount('#app')
